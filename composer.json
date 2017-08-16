@@ -1,0 +1,27 @@
+{
+  "name": "tronsha/spider",
+  "description": "Spider",
+  "version": "1.0.0-dev",
+  "type": "project",
+  "homepage": "https://github.com/tronsha/spider",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stefan Hüsges",
+      "homepage": "http://www.mpcx.net",
+      "email": "tronsha@gmail.com",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "tronsha/httpwebrequest": "dev-master",
+    "doctrine/dbal": "2.5.*",
+    "symfony/console": "3.2.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7.*",
+    "friendsofphp/php-cs-fixer": "2.*"
+  },
+  "minimum-stability": "dev"
+}
