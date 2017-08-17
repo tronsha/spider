@@ -26,12 +26,23 @@
 
 namespace Spider;
 
-/**
- * @author Stefan Hüsges
- * @link https://github.com/tronsha/spider Project on GitHub
- * @link http://www.robotstxt.org/ The Web Robots Pages
- * @link https://en.wikipedia.org/wiki/Robots_exclusion_standard Wikipedia - Robots exclusion standard
- */
-class Robotstxt
+class RobotstxtTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        ini_set('zend.enable_gc', 0);
+        date_default_timezone_set('Europe/Berlin');
+    }
+
+    protected function setUp()
+    {
+    }
+
+    protected function tearDown()
+    {
+    }
+
+    public function testRobotstxt()
+    {
+    }
 }

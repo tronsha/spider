@@ -23,5 +23,10 @@
     "phpunit/phpunit": "5.7.*",
     "friendsofphp/php-cs-fixer": "2.*"
   },
+  "autoload": {
+    "psr-4": {
+      "Spider\\": "library/"
+    }
+  },
   "minimum-stability": "dev"
 }
