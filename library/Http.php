@@ -26,8 +26,12 @@
 
 namespace Spider;
 
-use HttpWebRequest\HttpWebRequest as http;
+use HttpWebRequest\HttpWebRequest;
 
-class Httpwebrequest extends http
+/**
+ * @author Stefan Hüsges
+ * @link https://github.com/tronsha/spider Project on GitHub
+ */
+class Http extends HttpWebRequest
 {
 }

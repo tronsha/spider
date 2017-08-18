@@ -32,6 +32,6 @@ namespace Spider;
  * @link http://www.robotstxt.org/ The Web Robots Pages
  * @link https://en.wikipedia.org/wiki/Robots_exclusion_standard Wikipedia - Robots exclusion standard
  */
-class Robotstxt
+class Robots
 {
 }
