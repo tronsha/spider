@@ -34,4 +34,10 @@ namespace Spider;
  */
 class Robots
 {
+
+    public function __construct()
+    {
+
+    }
+
 }
