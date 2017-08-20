@@ -29,10 +29,8 @@ namespace Spider;
 /**
  * @author Stefan Hüsges
  * @link https://github.com/tronsha/spider Project on GitHub
- * @link http://www.robotstxt.org/ The Web Robots Pages
- * @link https://en.wikipedia.org/wiki/Robots_exclusion_standard Wikipedia - Robots exclusion standard
  */
-class Robots
+class Parser
 {
     public function __construct()
     {
