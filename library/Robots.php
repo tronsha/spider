@@ -37,4 +37,8 @@ class Robots
     public function __construct()
     {
     }
+
+    public function getFile()
+    {
+    }
 }
