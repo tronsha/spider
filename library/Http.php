@@ -34,4 +34,8 @@ use HttpWebRequest\HttpWebRequest;
  */
 class Http extends HttpWebRequest
 {
+    public function __construct($url)
+    {
+        parent::__construct($url);
+    }
 }
