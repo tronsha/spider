@@ -37,5 +37,11 @@ class Http extends HttpWebRequest
     public function __construct($url)
     {
         parent::__construct($url);
+        $this->addHeader('Accept', '*/*');
+        $this->addHeader('Accept-Encoding', 'gzip, deflate');
+        $this->addHeader('Accept-Language', 'en-US,en;q=0.5');
+        $this->addHeader('Cache-Control', 'max-age=0');
+        $this->addHeader('Connection', 'keep-alive');
+        $this->addHeader('User-Agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0');
     }
 }
