@@ -34,11 +34,36 @@ namespace Spider;
  */
 class Robots
 {
-    public function __construct()
+    /**
+     * Robots constructor.
+     *
+     * @param null $url
+     */
+    public function __construct($url = null)
     {
+        if (null !== $url) {
+            $domain = $url;
+            $this->getFile($domain);
+        }
     }
 
-    public function getFile()
+    /**
+     * @param $domain
+     */
+    public function getFile($domain)
+    {
+        $http = new Http($domain . '/robots.txt');
+        $http->connect();
+        $http->write();
+        $http->read();
+        $fileContent = $http->getContent();
+        $this->setData($fileContent);
+    }
+
+    /**
+     * @param $content
+     */
+    public function setContent($content)
     {
     }
 }
