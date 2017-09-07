@@ -32,7 +32,13 @@ namespace Spider;
  */
 class Idn
 {
-    public function __construct()
+    public static function decode($domain)
     {
+        return idn_to_ascii($domain);
+    }
+
+    public static function encode($domain)
+    {
+        return idn_to_utf8($domain);
     }
 }
