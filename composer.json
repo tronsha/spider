@@ -15,7 +15,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "tronsha/httpwebrequest": "dev-master",
+    "tronsha/httpwebrequest": "1.*",
     "doctrine/dbal": "2.5.*",
     "symfony/console": "3.2.*"
   },

@@ -36,6 +36,7 @@ class Http extends HttpWebRequest
 {
     public function __construct($url)
     {
+        $url = Idn::decode($url);
         parent::__construct($url);
         $this->addHeader('Accept', '*/*');
         $this->addHeader('Accept-Charset', 'utf-8, iso-8859-1;q=0.5, *;q=0.1');
@@ -43,6 +44,6 @@ class Http extends HttpWebRequest
         $this->addHeader('Accept-Language', '*');
         $this->addHeader('Cache-Control', 'max-age=0');
         $this->addHeader('Connection', 'keep-alive');
-        $this->addHeader('User-Agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0');
+        $this->addHeader('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0');
     }
 }
