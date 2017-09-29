@@ -26,23 +26,27 @@
 
 namespace Spider;
 
-use HttpWebRequest\HttpWebRequest;
+use Zend\Http\Client;
 
 /**
  * @author Stefan Hüsges
  * @link https://github.com/tronsha/spider Project on GitHub
  */
-class Http extends HttpWebRequest
+class Http
 {
-    public function __construct($url)
+    protected $client = null;
+
+    public function __construct()
     {
-        parent::__construct($url);
-        $this->addHeader('Accept', '*/*');
-        $this->addHeader('Accept-Charset', 'utf-8, iso-8859-1;q=0.5, *;q=0.1');
-        $this->addHeader('Accept-Encoding', 'gzip, deflate');
-        $this->addHeader('Accept-Language', '*');
-        $this->addHeader('Cache-Control', 'max-age=0');
-        $this->addHeader('Connection', 'keep-alive');
-        $this->addHeader('User-Agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0');
+        $this->client = new Client;
+        $this->client->setHeaders([
+            'Accept' => '*/*',
+            'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
+            'Accept-Encoding' => 'gzip, deflate',
+            'Accept-Language' => '*',
+            'Cache-Control' => 'max-age=0',
+            'Connection' => 'keep-alive',
+            'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
+        ]);
     }
 }

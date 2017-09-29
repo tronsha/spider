@@ -15,7 +15,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "tronsha/httpwebrequest": "dev-master",
+    "zendframework/zend-http": "2.5.*",
     "doctrine/dbal": "2.5.*",
     "symfony/console": "3.2.*"
   },

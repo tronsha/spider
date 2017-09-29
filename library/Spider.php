@@ -32,7 +32,15 @@ namespace Spider;
  */
 class Spider
 {
+    protected $http = null;
+
     public function __construct()
     {
+        $this->http = new Http;
+    }
+
+    public function run()
+    {
+        var_dump($this->http);
     }
 }
