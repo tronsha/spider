@@ -41,6 +41,8 @@ class Spider
 
     public function run()
     {
-        var_dump($this->http);
+        $this->http->setUrl('http://www.example.org/');
+        $this->http->send();
+        var_dump($this->http->getStatus());
     }
 }

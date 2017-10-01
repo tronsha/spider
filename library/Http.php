@@ -35,6 +35,7 @@ use Zend\Http\Client;
 class Http
 {
     protected $client = null;
+    protected $response = null;
 
     public function __construct()
     {
@@ -48,5 +49,27 @@ class Http
             'Connection' => 'keep-alive',
             'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
         ]);
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->client->setUri($url);
+    }
+
+    /**
+     * @return \Zend\Http\Response
+     */
+    public function send()
+    {
+        $this->response = $this->client->send();
+        return $this->response;
+    }
+
+    public function getStatus()
+    {
+        return $this->response->getStatusCode();
     }
 }
