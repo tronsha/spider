@@ -3,7 +3,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Stefan Hüsges
+ * Copyright (c) 2017 - 2018 Stefan Hüsges
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 
 namespace Spider;
 
-use Zend\Http\Client;
+use GuzzleHttp\Client;
 
 /**
  * @author Stefan Hüsges
@@ -40,36 +40,12 @@ class Http
     public function __construct()
     {
         $this->client = new Client;
-        $this->client->setHeaders([
-            'Accept' => '*/*',
-            'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
-            'Accept-Encoding' => 'gzip, deflate',
-            'Accept-Language' => '*',
-            'Cache-Control' => 'max-age=0',
-            'Connection' => 'keep-alive',
-            'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
-        ]);
-    }
-
-    /**
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->client->setUri($url);
-    }
-
-    /**
-     * @return \Zend\Http\Response
-     */
-    public function send()
-    {
-        $this->response = $this->client->send();
-        return $this->response;
-    }
-
-    public function getStatus()
-    {
-        return $this->response->getStatusCode();
+        //'Accept' => '*/*',
+        //'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
+        //'Accept-Encoding' => 'gzip, deflate',
+        //'Accept-Language' => '*',
+        //'Cache-Control' => 'max-age=0',
+        //'Connection' => 'keep-alive',
+        //'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
     }
 }
