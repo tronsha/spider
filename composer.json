@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Spider\\": "library/"
+      "Spider\\": "src/"
     }
   },
   "minimum-stability": "dev"
