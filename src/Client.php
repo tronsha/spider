@@ -34,8 +34,9 @@ use GuzzleHttp\Client;
  */
 class Client
 {
-    protected $client = null;
-    protected $response = null;
+    private $client = null;
+    private $response = null;
+    private $requestHeader = [];
 
     /**
      * 
@@ -43,14 +44,7 @@ class Client
     public function __construct()
     {
         $this->client = new Client;
-    }
-    
-    /**
-     * @return array
-     */
-    private function getHeaders() 
-    {
-        return [
+        $this->requestHeader = [
             'Accept' => '*/*',
             'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
             'Accept-Encoding' => 'gzip, deflate',
@@ -63,6 +57,14 @@ class Client
     
     public function request()
     {
-        return $this->client->request('GET', 'http://www.example.org', $this->getHeaders());
+        return $this->client->request('GET', 'http://www.example.org', $this->getRequestHeaders());
+    }
+
+    /**
+     * @return array
+     */
+    private function getRequestHeaders() 
+    {
+        return $this->requestHeader;
     }
 }
