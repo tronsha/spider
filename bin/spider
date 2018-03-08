@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 /*
@@ -26,26 +27,18 @@
 
 namespace Spider;
 
-use GuzzleHttp\Client;
+use Spider\Spider;
 
-/**
- * @author Stefan Hüsges
- * @link https://github.com/tronsha/spider Project on GitHub
- */
-class Http
-{
-    protected $client = null;
-    protected $response = null;
+chdir(__DIR__);
 
-    public function __construct()
-    {
-        $this->client = new Client;
-        //'Accept' => '*/*',
-        //'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
-        //'Accept-Encoding' => 'gzip, deflate',
-        //'Accept-Language' => '*',
-        //'Cache-Control' => 'max-age=0',
-        //'Connection' => 'keep-alive',
-        //'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
-    }
+if (true === file_exists('../vendor/autoload.php')) {
+    require_once '../vendor/autoload.php';
+} else {
+    echo 'You must set up the project dependencies, run the following commands:' . PHP_EOL;
+    echo 'curl -s https://getcomposer.org/installer | php' . PHP_EOL;
+    echo 'php composer.phar install' . PHP_EOL;
+    exit;
 }
+
+$app = new Spider;
+$app->run();

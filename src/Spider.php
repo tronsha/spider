@@ -26,23 +26,25 @@
 
 namespace Spider;
 
+use Spider\Client;
+
 /**
  * @author Stefan Hüsges
  * @link https://github.com/tronsha/spider Project on GitHub
  */
 class Spider
 {
-    protected $http = null;
+    protected $client = null;
 
     public function __construct()
     {
-        $this->http = new Http;
+        $this->client = new Client;
     }
 
     public function run()
     {
-        $this->http->setUrl('http://www.example.org/');
-        $this->http->send();
-        var_dump($this->http->getStatus());
+        $client = $this->client;
+        $client->setUrl('http://www.example.org/');
+        var_dump($client->getStatus());
     }
 }

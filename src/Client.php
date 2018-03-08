@@ -26,7 +26,7 @@
 
 namespace Spider;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as Guzzel;
 
 /**
  * @author Stefan Hüsges
@@ -37,13 +37,14 @@ class Client
     private $client = null;
     private $response = null;
     private $requestHeader = [];
+    private $url = '';
 
     /**
-     * 
+     *
      */
     public function __construct()
     {
-        $this->client = new Client;
+        $this->client = new Guzzel;
         $this->requestHeader = [
             'Accept' => '*/*',
             'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
@@ -51,20 +52,35 @@ class Client
             'Accept-Language' => '*',
             'Cache-Control' => 'max-age=0',
             'Connection' => 'keep-alive',
-            'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'  
+            'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
         ];
     }
     
     public function request()
     {
-        return $this->client->request('GET', 'http://www.example.org', $this->getRequestHeaders());
+        return $this->client->request('GET', $this->getUrl(), $this->getRequestHeaders());
     }
 
     /**
      * @return array
      */
-    private function getRequestHeaders() 
+    private function getRequestHeaders()
     {
         return $this->requestHeader;
+    }
+    
+    private function getUrl()
+    {
+        return $this->url;
+    }
+    
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+    
+    public function getStatus() 
+    {
+        var_dump( $this->request() );
     }
 }
