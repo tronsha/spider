@@ -45,6 +45,7 @@ class Spider
     {
         $client = $this->client;
         $client->setUrl('http://www.example.org/');
-        var_dump($client->getStatus());
+        $client->request();
+        var_dump($client->getStatusCode());
     }
 }
