@@ -27,7 +27,6 @@
 namespace Spider;
 
 use GuzzleHttp\Client as Guzzel;
-use GuzzleHttp\Psr7\Response;
 
 /**
  * @author Stefan Hüsges
@@ -80,8 +79,13 @@ class Client
         $this->url = $url;
     }
     
-    public function getStatusCode() 
+    public function getStatusCode()
     {
         return $this->response->getStatusCode();
+    }
+
+    public function getContent()
+    {
+        return $this->response->getBody()->getContents();
     }
 }

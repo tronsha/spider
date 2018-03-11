@@ -26,8 +26,6 @@
 
 namespace Spider;
 
-use Spider\Client;
-
 /**
  * @author Stefan Hüsges
  * @link https://github.com/tronsha/spider Project on GitHub
@@ -43,9 +41,6 @@ class Spider
 
     public function run()
     {
-        $client = $this->client;
-        $client->setUrl('http://www.example.org/');
-        $client->request();
-        var_dump($client->getStatusCode());
+        echo (new Robots())->getFile('http://www.heise.de');
     }
 }

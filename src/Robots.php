@@ -34,36 +34,35 @@ namespace Spider;
  */
 class Robots
 {
+    private $robots = [];
+
     /**
      * Robots constructor.
-     *
-     * @param null $url
      */
-    public function __construct($url = null)
+    public function __construct()
     {
-        if (null !== $url) {
-            $domain = $url;
-            $this->getFile($domain);
-        }
     }
 
     /**
-     * @param $domain
+     * @param string $domain
+     *
+     * @return string
      */
     public function getFile($domain)
     {
-        $http = new Http($domain . '/robots.txt');
-        $http->connect();
-        $http->write();
-        $http->read();
-        $fileContent = $http->getContent();
-        $this->setData($fileContent);
-    }
+        if (true === isset($this->robots[$domain])) {
+            return $this->robots[$domain];
+        }
 
-    /**
-     * @param $content
-     */
-    public function setContent($content)
-    {
+        $client = new Client();
+        $client->setUrl($domain . '/robots.txt');
+        try {
+            $client->request();
+            if (200 === (int)$client->getStatusCode()) {
+                return $this->robots[$domain] = $client->getContent();
+            }
+        } catch (\Throwable $e) {
+            return $e->getMessage();
+        }
     }
 }
