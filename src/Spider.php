@@ -41,6 +41,6 @@ class Spider
 
     public function run()
     {
-        echo (new Robots())->getFile('http://www.heise.de');
+        echo (new Robots())->isDisallow('http://www.heise.de');
     }
 }

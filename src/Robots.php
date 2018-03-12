@@ -42,13 +42,21 @@ class Robots
     public function __construct()
     {
     }
+    
+    public function isDisallow($url)
+    {
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+        $host = parse_url($url, PHP_URL_HOST);
+        $port = parse_url($url, PHP_URL_PORT);
+        $file = $this->getRobotsTxtFile($scheme . '://' . $host . (false === empty($port) ? ':' . $port : ''));
+    }
 
     /**
      * @param string $domain
      *
      * @return string
      */
-    public function getFile($domain)
+    public function getRobotsTxtFile($domain)
     {
         if (true === isset($this->robots[$domain])) {
             return $this->robots[$domain];
