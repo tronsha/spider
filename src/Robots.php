@@ -50,9 +50,9 @@ class Robots
         $port = parse_url($url, PHP_URL_PORT);
         $file = $this->getRobotsTxtFile($scheme . '://' . $host . (false === empty($port) ? ':' . $port : ''));
         $fileWithoutComments = preg_replace('/#.*\n/', '', $file);
-        $fileWithoutCommentsAndBlanklines = preg_replace('/(\r?\n)+/', "\n", $fileWithoutComments);
-        
-        echo $fileWithoutCommentsAndBlanklines;
+        $fileWithoutCommentsAndBlanklines = preg_replace('/[\r\n]+/', "\n", $fileWithoutComments);
+        $fileArray = explode("\n", $fileWithoutCommentsAndBlanklines);
+        var_dump($fileArray);
     }
 
     /**
