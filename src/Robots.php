@@ -35,6 +35,7 @@ namespace Spider;
 class Robots
 {
     private $robots = [];
+    private $disallow = [];
 
     /**
      * Robots constructor.
@@ -48,11 +49,46 @@ class Robots
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST);
         $port = parse_url($url, PHP_URL_PORT);
-        $file = $this->getRobotsTxtFile($scheme . '://' . $host . (false === empty($port) ? ':' . $port : ''));
+        $domain = $scheme . '://' . $host . (false === empty($port) ? ':' . $port : '');
+        $domainKey = md5($domain);
+        $disallows = [];
+        if (false === isset($this->robots[$domain])) {
+            $disallows = $this->getDisallow($domain);
+        } else {
+            $disallows = $this->disallow[$domainKey];
+        }
+        foreach ($disallows as $disallow) {
+            if (false !== strpos($url, $disallow)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function getDisallow($domain) {
+        $domainKey = md5($domain);
+        $file = $this->getRobotsTxtFile($domain);
         $fileWithoutComments = preg_replace('/#.*\n/', '', $file);
         $fileWithoutCommentsAndBlanklines = preg_replace('/[\r\n]+/', "\n", $fileWithoutComments);
         $fileArray = explode("\n", $fileWithoutCommentsAndBlanklines);
-        var_dump($fileArray);
+        $enableGetDisallow = false;
+        foreach ($fileArray as $line) {
+            if ($line === 'User-agent: *') {
+                $enableGetDisallow = true;
+                continue;
+            }
+            if ($enableGetDisallow) {
+                if (false !== strpos($line, 'Disallow:')) {
+                    $path = trim(str_replace('Disallow:', '', $line));
+                    if (false === empty($path)) {
+                        $this->disallow[$domainKey][] = $domain . $path;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+        return $this->disallow[$domainKey] ?? [];
     }
 
     /**

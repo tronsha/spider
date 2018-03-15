@@ -41,6 +41,6 @@ class Spider
 
     public function run()
     {
-        echo (new Robots())->isDisallow('http://www.heise.de');
+        var_dump((new Robots())->isDisallow('http://www.heise.de/foo.html'));
     }
 }
