@@ -49,6 +49,7 @@ class Robots
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST);
         $port = parse_url($url, PHP_URL_PORT);
+        $path = parse_url($url, PHP_URL_PATH);
         $domain = $scheme . '://' . $host . (false === empty($port) ? ':' . $port : '');
         $domainKey = md5($domain);
         $disallows = [];
@@ -57,6 +58,7 @@ class Robots
         } else {
             $disallows = $this->disallow[$domainKey];
         }
+        $url .= null === $path ? '/' : '';
         foreach ($disallows as $disallow) {
             if (false !== strpos($url, $disallow)) {
                 return true;
