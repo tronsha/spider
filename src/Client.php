@@ -52,7 +52,7 @@ class Client
             'Accept-Language' => '*',
             'Cache-Control' => 'max-age=0',
             'Connection' => 'keep-alive',
-            'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0'
+            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0'
         ];
     }
     
