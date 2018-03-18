@@ -56,6 +56,10 @@ class Client
         ];
     }
     
+    public function setHeader($key, $value) {
+        $this->requestHeader[$key] = $value;
+    }
+
     public function request()
     {
         $this->response = $this->client->request('GET', $this->getUrl(), $this->getRequestHeaders());
