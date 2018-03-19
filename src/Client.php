@@ -56,8 +56,17 @@ class Client
         ];
     }
     
-    public function setHeader($key, $value) {
+    public function setHeader($key, $value) 
+            {
         $this->requestHeader[$key] = $value;
+    }
+    
+    public function getHeader($key = null)
+    {
+        if (null !== $key) {
+            return $this->requestHeader[$key] ?? null;
+        }
+        return $this->requestHeader;
     }
 
     public function request()
