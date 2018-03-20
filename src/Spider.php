@@ -41,7 +41,7 @@ class Spider
 
     public function run()
     {
-        var_dump($this->client->getHeader('User-Agent'));
+        var_dump($this->client->getHeader('user-agent'));
         var_dump((new Robots())->isDisallow('http://www.heise.de/foo.html'));
         var_dump((new Robots())->isDisallow('https://www.facebook.com'));
     }

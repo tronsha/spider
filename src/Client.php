@@ -56,15 +56,24 @@ class Client
         ];
     }
     
+    private function prepareKey($key) 
+    {
+        $parts = explode('-', strtolower($key));
+        foreach ($parts as &$part) {
+            $part = ucfirst($part);
+        }
+        return implode('-', $parts);
+    }
+
     public function setHeader($key, $value) 
-            {
-        $this->requestHeader[$key] = $value;
+    {
+        $this->requestHeader[$this->prepareKey($key)] = $value;
     }
     
     public function getHeader($key = null)
     {
         if (null !== $key) {
-            return $this->requestHeader[$key] ?? null;
+            return $this->requestHeader[$this->prepareKey($key)] ?? null;
         }
         return $this->requestHeader;
     }
