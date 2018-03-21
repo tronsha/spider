@@ -67,7 +67,8 @@ class Robots
         return false;
     }
     
-    public function getDisallow($domain) {
+    public function getDisallow($domain)
+    {
         $domainKey = md5($domain);
         $file = $this->getRobotsTxtFile($domain);
         $fileWithoutComments = preg_replace('/#.*\n/', '', $file);

@@ -1,6 +1,6 @@
 {
   "name": "tronsha/spider",
-  "description": "Spider",
+  "description": "Artemis",
   "version": "1.0.0-dev",
   "type": "project",
   "homepage": "https://github.com/tronsha/spider",
@@ -14,13 +14,13 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.0",
     "guzzlehttp/guzzle": "6.3.*",
     "doctrine/dbal": "2.5.*",
     "symfony/console": "3.2.*"
   },
   "require-dev": {
-    "phpunit/phpunit": "5.*",
+    "phpunit/phpunit": "6.*",
     "friendsofphp/php-cs-fixer": "2.*"
   },
   "autoload": {

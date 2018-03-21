@@ -45,18 +45,20 @@ class Client
     public function __construct()
     {
         $this->client = new Guzzel;
-        $this->requestHeader = [
-            'Accept' => '*/*',
-            'Accept-Charset' => 'utf-8, iso-8859-1;q=0.5, *;q=0.1',
-            'Accept-Encoding' => 'gzip, deflate',
-            'Accept-Language' => '*',
-            'Cache-Control' => 'max-age=0',
-            'Connection' => 'keep-alive',
-            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0'
-        ];
+        $this->setHeader('Accept', '*/*');
+        $this->setHeader('Accept-Charset', 'utf-8, iso-8859-1;q=0.5, *;q=0.1');
+        $this->setHeader('Accept-Encoding', 'gzip, deflate');
+        $this->setHeader('Accept-Language', '*');
+        $this->setHeader('Cache-Control', 'max-age=0');
+        $this->setHeader('Connection', 'keep-alive');
+        $this->setHeader('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0');
     }
     
-    private function prepareKey($key) 
+    /**
+     * @param string $key
+     * @return string
+     */
+    private function prepareKey(string $key): string
     {
         $parts = explode('-', strtolower($key));
         foreach ($parts as &$part) {
@@ -65,11 +67,19 @@ class Client
         return implode('-', $parts);
     }
 
-    public function setHeader($key, $value) 
+    /**
+     * @param string $key
+     * @param string $value
+     */
+    public function setHeader(string $key, string $value)
     {
         $this->requestHeader[$this->prepareKey($key)] = $value;
     }
     
+    /**
+     * @param string|null $key
+     * @return string|array
+     */
     public function getHeader($key = null)
     {
         if (null !== $key) {
@@ -80,33 +90,37 @@ class Client
 
     public function request()
     {
-        $this->response = $this->client->request('GET', $this->getUrl(), $this->getRequestHeaders());
+        $this->response = $this->client->request('GET', $this->getUrl(), $this->getHeader());
     }
-
+   
     /**
-     * @return array
+     * @return string
      */
-    private function getRequestHeaders()
-    {
-        return $this->requestHeader;
-    }
-    
-    private function getUrl()
+    private function getUrl(): string
     {
         return $this->url;
     }
     
+    /**
+     * @param string $url
+     */
     public function setUrl($url)
     {
         $this->url = $url;
     }
     
-    public function getStatusCode()
+    /**
+     * @return int
+     */
+    public function getStatusCode(): int
     {
-        return $this->response->getStatusCode();
+        return (int) $this->response->getStatusCode();
     }
 
-    public function getContent()
+    /**
+     * @return string
+     */
+    public function getContent(): string
     {
         return $this->response->getBody()->getContents();
     }
