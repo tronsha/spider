@@ -109,7 +109,7 @@ class Robots
         $client->setUrl($domain . '/robots.txt');
         try {
             $client->request();
-            if (200 === (int)$client->getStatusCode()) {
+            if (200 === (int) $client->getStatusCode()) {
                 return $this->robots[$domain] = $client->getContent();
             }
         } catch (\Throwable $e) {
