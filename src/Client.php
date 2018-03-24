@@ -34,6 +34,16 @@ use GuzzleHttp\Client as Guzzel;
  */
 class Client
 {
+    const GET = 'GET';
+    const POST = 'POST';
+    const PUT = 'PUT';
+    const HEAD = 'HEAD';
+    const DELETE = 'DELETE';
+    const TRACE = 'TRACE';
+    const OPTIONS = 'OPTIONS';
+    const CONNECT = 'CONNECT';
+
+    private $method = self::GET;
     private $client = null;
     private $response = null;
     private $requestHeader = [];
@@ -53,7 +63,7 @@ class Client
             ->setRequestHeader('Connection', 'keep-alive')
             ->setRequestHeader('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:42.0) Gecko/20100101 Firefox/42.0');
     }
-    
+
     /**
      * @param string $key
      * @return string
@@ -77,7 +87,7 @@ class Client
         $this->requestHeader[$this->prepareKey($key)] = $value;
         return $this;
     }
-    
+
     /**
      * @param string|null $key
      * @return string|array
@@ -90,15 +100,20 @@ class Client
         return $this->requestHeader;
     }
 
+    public function setMethod($method)
+    {
+        $this->method = strtoupper($method);
+    }
+
     /**
      * @return $this
      */
     public function request(): Client
     {
-        $this->response = $this->client->request('GET', $this->getUrl(), $this->getRequestHeader());
+        $this->response = $this->client->request($this->method, $this->getUrl(), $this->getRequestHeader());
         return $this;
     }
-   
+
     /**
      * @return string
      */
@@ -106,7 +121,7 @@ class Client
     {
         return $this->url;
     }
-    
+
     /**
      * @param string $url
      * @return $this
@@ -116,13 +131,13 @@ class Client
         $this->url = $url;
         return $this;
     }
-    
+
     /**
      * @return int
      */
     public function getStatusCode(): int
     {
-        return (int) $this->response->getStatusCode();
+        return (int)$this->response->getStatusCode();
     }
 
     /**
@@ -132,7 +147,7 @@ class Client
     {
         return $this->response->getBody()->getContents();
     }
-    
+
     /**
      * @return string
      */
