@@ -135,9 +135,9 @@ class Client
     /**
      * @return int
      */
-    public function getStatusCode(): int
+    public function getStatus(): int
     {
-        return (int)$this->response->getStatusCode();
+        return (int) $this->response->getStatusCode();
     }
 
     /**
@@ -151,8 +151,11 @@ class Client
     /**
      * @return string
      */
-    public function getHeaders()
+    public function getHeader($key = null)
     {
-        return $this->response->getHeaders();
+        if (null === $key) {
+            return $this->response->getHeaders();
+        }
+        return $this->response->getHeader($key);
     }
 }
