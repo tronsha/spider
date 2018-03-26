@@ -154,8 +154,18 @@ class Client
     public function getHeader($key = null)
     {
         if (null === $key) {
-            return $this->response->getHeaders();
+            $result = '';
+            foreach ($this->response->getHeaders() as $k => $v) {
+                if (is_array($v) === false) {
+                    $result .= $k . ': ' . $v . PHP_EOL;
+                } else {
+                    foreach ($v as $v2) {
+                        $result .= $k . ': ' . $v2 . PHP_EOL;
+                    }
+                }
+            }
+            return $result;  
         }
-        return $this->response->getHeader($key);
+        return $this->response->getHeader($key)[0];
     }
 }
