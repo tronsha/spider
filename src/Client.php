@@ -102,7 +102,7 @@ class Client
 
     public function setMethod($method)
     {
-        $this->method = strtoupper($method);
+        $this->method = $method;
     }
 
     /**
@@ -149,9 +149,10 @@ class Client
     }
 
     /**
+     * @param string|null $key
      * @return string
      */
-    public function getHeader($key = null)
+    public function getHeader($key = null): string
     {
         if (null === $key) {
             $result = '';

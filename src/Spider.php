@@ -41,6 +41,7 @@ class Spider
 
     public function run()
     {
+        $this->client->setMethod(Client::GET);
         var_dump($this->client->setUrl('http://www.heise.de')->request()->getHeader());
         var_dump($this->client->setUrl('http://www.heise.de')->request()->getHeader('content-type'));
         var_dump($this->client->setUrl('http://www.golem.de')->request()->getHeader());
