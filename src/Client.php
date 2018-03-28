@@ -100,6 +100,9 @@ class Client
         return $this->requestHeader;
     }
 
+    /**
+     * @param type $method
+     */
     public function setMethod($method)
     {
         $this->method = $method;
@@ -165,7 +168,7 @@ class Client
                     }
                 }
             }
-            return $result;  
+            return $result;
         }
         return $this->response->getHeader($key)[0];
     }
