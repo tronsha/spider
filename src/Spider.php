@@ -38,12 +38,17 @@ class Spider
     {
         $this->client = new Client;
     }
+    
+    public function getClient()
+    {
+        return $this->client;
+    }
 
     public function run()
     {
-        $this->client->setMethod(Client::GET);
-        var_dump($this->client->setUrl('http://www.heise.de')->request()->getHeader());
-        var_dump($this->client->setUrl('http://www.golem.de')->request()->getHeader());
-        var_dump($this->client->setUrl('http://www.gnuterrypratchett.com')->request()->getHeader());
+        $this->getClient()->setMethod(Client::GET);
+        var_dump($this->getClient()->setUrl('http://www.heise.de')->request()->getHeader());
+        var_dump($this->getClient()->setUrl('http://www.golem.de')->request()->getHeader());
+        var_dump($this->getClient()->setUrl('http://www.gnuterrypratchett.com')->request()->getHeader());
     }
 }
