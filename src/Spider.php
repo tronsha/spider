@@ -32,6 +32,9 @@ namespace Spider;
  */
 class Spider
 {
+    /**
+     * @var Client
+     */
     protected $client = null;
 
     public function __construct()
@@ -39,7 +42,7 @@ class Spider
         $this->client = new Client;
     }
     
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
     }
