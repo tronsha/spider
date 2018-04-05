@@ -44,7 +44,11 @@ class Robots
     {
     }
     
-    public function isDisallow($url)
+    /**
+     * @param string $url
+     * @return boolean
+     */
+    public function isDisallow(string $url): bool
     {
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST);
@@ -67,7 +71,11 @@ class Robots
         return false;
     }
     
-    public function getDisallow($domain)
+    /**
+     * @param string $domain
+     * @return array
+     */
+    public function getDisallow(string $domain): array
     {
         $domainKey = md5($domain);
         $file = $this->getRobotsTxtFile($domain);
@@ -99,7 +107,7 @@ class Robots
      *
      * @return string
      */
-    public function getRobotsTxtFile($domain)
+    public function getRobotsTxtFile($domain): string
     {
         if (true === isset($this->robots[$domain])) {
             return $this->robots[$domain];
