@@ -58,7 +58,7 @@ class Robots
         $domainKey = md5($domain);
         $disallows = [];
         if (false === isset($this->robots[$domain])) {
-            $disallows = $this->getDisallow($domain);
+            $disallows = $this->getDisallows($domain);
         } else {
             $disallows = $this->disallow[$domainKey];
         }
@@ -75,7 +75,7 @@ class Robots
      * @param string $domain
      * @return array
      */
-    public function getDisallow(string $domain): array
+    public function getDisallows(string $domain): array
     {
         $domainKey = md5($domain);
         $file = $this->getRobotsTxtFile($domain);
