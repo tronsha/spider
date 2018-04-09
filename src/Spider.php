@@ -42,12 +42,18 @@ class Spider
         $this->client = new Client;
     }
     
+    /**
+     * @return \Spider\Client
+     */
     public function getClient(): Client
     {
         return $this->client;
     }
 
-    public function run()
+    /**
+     * 
+     */
+    public function run(): void
     {
         $this->getClient()->setMethod(Client::GET);
         var_dump($this->getClient()->setUrl('http://www.heise.de')->request()->getHeader());
